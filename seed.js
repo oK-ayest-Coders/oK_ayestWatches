@@ -22,22 +22,6 @@ async function seed() {
     },
   });
 
-  const order = await prisma.order.create({
-    data: {
-    user_id: bob.id,
-    completed: false
-    }
-  })
-
-  const cart = await prisma.cart.create({
-    data: {
-    order_id: order.id,
-    watch_id: yatch_master.id,
-    price: 50_000,
-    quantity: 1
-    }
-  })
-
   const yatch_master = await prisma.watches.create({
     data: {
     image: "put link here",
@@ -66,6 +50,22 @@ async function seed() {
     }
   });
 }
+
+  const order = await prisma.order.create({
+    data: {
+    user_id: bob.id,
+    completed: false
+    }
+  })
+
+  const cart = await prisma.cart.create({
+    data: {
+    order_id: order.id,
+    watch_id: yatch_master.id,
+    price: 50_000,
+    quantity: 1
+    }
+  })
 
 seed()
 .then(async () => {
