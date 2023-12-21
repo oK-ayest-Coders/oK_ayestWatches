@@ -28,7 +28,7 @@ async function seed() {
     name: "Yatch-Master",
     brand: "rolex",
     type: "analog",
-    craftdate: new Date(12/2/2018),
+    craftdate: "2018",
     size: "L",
     in_stock: true,
     description: "To keep your heading, no matter the circumstance.",
@@ -42,30 +42,30 @@ async function seed() {
     name: "submariner",
     brand: "rolex",
     type: "analog",
-    craftdate: new Date(7/23/2015),
+    craftdate: "2015",
     size: "m",
     in_stock: true,
     description: "The supreme divers watch",
     price: 35_000 
     }
   });
-}
 
   const order = await prisma.order.create({
     data: {
     user_id: bob.id,
     completed: false
     }
-  })
+  });
 
   const cart = await prisma.cart.create({
     data: {
-    order_id: order.id,
+    order_id: bob.id,
     watch_id: yatch_master.id,
     price: 50_000,
     quantity: 1
     }
-  })
+  });
+}
 
 seed()
 .then(async () => {

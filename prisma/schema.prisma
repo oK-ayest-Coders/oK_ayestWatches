@@ -39,12 +39,12 @@ model Cart {
 }
 
 model Watches {
-  id          Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   image       String
   name        String
   brand       String
   type        String
-  craftDate   DateTime
+  craftdate   String
   size        String
   in_stock    Boolean
   description String
