@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}));
 // });
 
 app.use("/api", require("./api"));
-app.use("/api", require("./api/auth"));
+app.use("/auth", require("./api/auth"));
 
 
 ViteExpress.listen(app, 3000, () =>
