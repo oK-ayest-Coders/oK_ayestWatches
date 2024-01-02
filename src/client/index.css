@@ -1,0 +1,125 @@
+/*index.css*/
+
+/*This is the styling for my signup and login page
+I made a container for the signup portion while including 
+a background image.JP*/
+
+.loginContainer{
+    width:100%;
+    height:100vh;
+    background-image: url('../img/login.jpg');
+    background-position: center;
+    background-size:  cover;
+    position: relative;
+    }
+    .loginContainer2{
+        width:100%;
+        height:100vh;
+        background-image: url('../img/signup.jpg');
+        background-position: center;
+        background-size:  cover;
+        position: relative;
+        }
+    .form-box{
+width:90%;
+max-width: 450px;
+position: absolute;
+top: 30%;
+left: 50%;
+transform: translate(-50%,-50%);
+background:#fff;
+padding: 50px 60px 70px;
+text-align: center;
+    }
+    .form-box h1{
+        font-size: 30px;
+        margin-bottom: 60px;
+        color: #000000;
+        position: relative;
+    }
+
+    .form-box h1::after{
+content: '';
+width: 30px;
+height: 4px;
+border-radius: 3px;
+background: #000000;
+position: absolute;
+bottom: -12px;
+left: 50%;
+transform: translateX(-50%);
+    }
+    .input-field{
+        background: #eaeaea;
+        margin: 15px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+    }
+
+    input{
+        width: 100%;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        padding: 18px 15px;
+    }
+    .button-field{
+
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .button-field button{
+        flex-basis: 48%;
+        background-color: #000000;
+        color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        transition: background 1s;
+
+    }
+    .input-group{
+height: 280px;
+    }
+    .button-field button.disable{
+background: #aeaeae;
+color: #555;
+    }
+    
+
+
+
+/*This is the styling for my nav bar. I made a simple nav bar
+you can edit or delete it later i jus made this so i can 
+see the changes when i click page to page. JP*/  
+    .navbar {
+        background-color: black;
+        padding: 10px 0;
+      }
+      
+      .navbar-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center; 
+      }
+      
+      .navbar-link {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      .navbar-link:hover {
+        background-color: #333; 
+      }
+      
+      
