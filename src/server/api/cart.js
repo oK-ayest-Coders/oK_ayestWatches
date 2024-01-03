@@ -1,21 +1,37 @@
 const express = require("express");
 const router = express.Router();
-const prisma = require("../client")
+const prisma = require("../client");
+const { verify } = require("../util");
 
-router.post("/", async (req, res, next) => {
+
+router.post("/", verify, async (req, res, next) => {
+    console.log(req.user)
     try{
-        const order = await prisma.order.findUnique({
+        // Find the Order to add to
+        const order = await prisma.order.findFirst({
             where: {
-                user_id: 
+                user_id: req.user.id,
+                completed: false
             }
         });
-        const cart = await prisma.cart.findMany();
+        // Create new Cart item with Order_id & product info
+        const cart = await prisma.cart.create({
+            data: {
+                order_id: order.id,
+                watch_id: "*",
+                price: "*",
+                quantity: "*",
+                userId: req.user.id
+
+            }
+        });
         res.status(200).send(cart)
     } catch(error){
         console.error(error)
 
     }
 });
+
 
 router.delete("/", async (req, res, next) => {
     try{
