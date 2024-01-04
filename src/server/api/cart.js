@@ -3,7 +3,6 @@ const router = express.Router();
 const prisma = require("../client");
 const { verify } = require("../util");
 
-
 router.post("/", verify, async (req, res, next) => {
     console.log(req.user)
     try{
@@ -18,11 +17,10 @@ router.post("/", verify, async (req, res, next) => {
         const cart = await prisma.cart.create({
             data: {
                 order_id: order.id,
-                watch_id: "*",
-                price: "*",
-                quantity: "*",
+                watch_id: req.body.watch_id,
+                price: req.body.price,
+                quantity: req.body.quantity,
                 userId: req.user.id
-
             }
         });
         res.status(200).send(cart)
@@ -31,22 +29,16 @@ router.post("/", verify, async (req, res, next) => {
 
     }
 });
-
-
-router.delete("/", async (req, res, next) => {
+// DELETE /api/cart/:id
+router.delete("/:id", async (req, res, next) => {
+    const {id} = req.params
     try{
-        const cart = await prisma.cart.findMany();
-        res.status(200).send(cart)
-    } catch(error){
-        console.error(error)
-
-    }
-});
-
-router.put("/", async (req, res, next) => {
-    try{
-        const cart = await prisma.cart.findMany();
-        res.status(200).send(cart)
+        const deletedCart = await prisma.cart.delete({
+            where: {
+                id: +id
+            }
+        })
+        res.status(200).send(deletedCart)
     } catch(error){
         console.error(error)
 
