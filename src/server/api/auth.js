@@ -26,6 +26,7 @@ if (!isValid){
     res.status(401).send({message: "Not authorized!"});
     return;
 }
+console.log(process.env.JWT_SECRET)
 const token = jwt.sign(
     { id: user.id, username: user.name },
     process.env.JWT_SECRET
