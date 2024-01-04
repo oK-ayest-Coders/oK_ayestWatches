@@ -1,18 +1,23 @@
 //login.jsx
+// import react library and use Dom used for navigation as well as styling
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../client/index.css';
 
+//create a function for login
+
 function Login() {
-    const navigate = useNavigate();
+    //make a state variable for username and password using usestate cause it can be changed 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    // make a hook for navigation between different pages
+    const navigate = useNavigate();
+    //create the login in form submission. for when the login button is clicked
     const handleLogin = async (e) => {
         e.preventDefault(); 
-
-        try {
-            const response = await fetch('/api/login', { 
+        // take the login and passwort and try to login with away fetch
+        try { 
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
@@ -20,7 +25,8 @@ function Login() {
             const data = await response.json();
             if (response.ok) {
                 console.log('Login successful:', data);
-               
+                navigate('/');
+
             } else {
                 console.error('Login failed:', data.message);
             }
@@ -28,11 +34,11 @@ function Login() {
             console.error('Login error:', error);
         }
     };
-
+//create a navigation to go to signup page when clicked
     const handleSignUpClick = () => {
         navigate('/signup'); // 
     };
-
+// return everything that the user will actually see
     return (
         <div className="loginContainer">
             <div className="form-box">
