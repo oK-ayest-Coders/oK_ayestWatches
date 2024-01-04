@@ -23,6 +23,7 @@ router.post("/", verify, async (req, res, next) => {
                 userId: req.user.id
             }
         });
+
         res.status(200).send(cart)
     } catch(error){
         console.error(error)

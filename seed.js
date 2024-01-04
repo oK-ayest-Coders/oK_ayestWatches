@@ -7,6 +7,7 @@ async function seed() {
     data: {
       username: "bob",
       password: password
+
     },
   });
 
@@ -14,6 +15,7 @@ async function seed() {
     data: {
       username: "jill",
       password: password
+
     },
   });
 
@@ -21,9 +23,10 @@ async function seed() {
     data: {
       username: "anna",
       password: password
-    },
-  });
 
+    },
+  })
+;
   const yatch_master = await prisma.watches.create({
     data: {
     image: "put link here",
