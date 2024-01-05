@@ -1,10 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const prisma = require("../client")
+const prisma = require("../client");
+const { verify } = require("../util");
 
-router.get("/", async (req, res, next) => {
+router.get("/", verify,async (req, res, next) => {
     try{
-        const orders = await prisma.order.findMany();
+        const orders = await prisma.order.findFirst({
+            where: {
+                user_id: req.user.id
+            },
+            include: {
+                Cart: true
+            }
+        });
         res.status(200).send(orders)
     } catch(error){
         console.error(error)
