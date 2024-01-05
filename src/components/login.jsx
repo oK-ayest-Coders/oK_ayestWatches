@@ -17,7 +17,7 @@ function Login() {
         e.preventDefault(); 
         // take the login and passwort and try to login with away fetch
         try { 
-            const response = await fetch('/api/login', {
+            const response = await fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),

@@ -10,6 +10,9 @@ function Navbar() {
         <li><Link to="/womens" className="navbar-link">Womens</Link></li>
         <li><Link to="/login" className="navbar-link">Login</Link></li>
         <li><Link to="/signUp" className="navbar-link">Sign up</Link></li>
+        <li><Link to="/ShoppingCart" className="navbar-link">Cart</Link></li>
+        <li><Link to="/watches" className="navbar-link">ALl WAtches</Link></li>
+
       </ul>
     </nav>
   );

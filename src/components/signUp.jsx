@@ -21,7 +21,7 @@ function SignUp() {
         // make the try post to send username and password to the server
 
         try {
-            const response = await fetch('/api/users', {
+            const response = await fetch('/auth/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, username, password }),
