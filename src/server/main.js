@@ -16,7 +16,8 @@ app.use(express.urlencoded({extended: true}));
 //this is router for authenticating the api
 const apiRouter = require("./api/auth"); 
 // putting the router on the correct path
-app.use("/api", apiRouter);
+app.use("/auth", require("./api/auth"))
+app.use("/api", require("./api"));
 
 
 

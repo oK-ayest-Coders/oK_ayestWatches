@@ -10,6 +10,8 @@ import Mens from "../components/mens";
 import Womens from "../components/womens";
 import AllWatches from '../components/AllWatches';
 import SingleWatch from '../components/SingleWatch';
+import Cart from "../components/ShoppingCart";
+
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/womens" element={<Womens />} />
           <Route path="/watches" element={<AllWatches />} />
           <Route path="/watches/:id" element={<SingleWatch />} />
+          <Route path="/ShoppingCart" element={<Cart />} />
+
         </Routes>
       </div>
     </Router>
