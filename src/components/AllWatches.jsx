@@ -26,7 +26,7 @@ const AllWatches = () => {
     const addToCart = async (watchId) => {
         try {
             // Assuming you have an endpoint '/api/cart/add' and you're sending the watch ID
-            const response = await axios.post('/api/cart/post', { watchId });
+            const response = await axios.post('/api/cart', { watchId });
             console.log(response.data); // Or handle the response appropriately
         } catch (error) {
             console.error('Error adding to cart:', error);
@@ -61,6 +61,7 @@ const AllWatches = () => {
             })}
         </div>
     );
+
 }
 
 export default AllWatches;

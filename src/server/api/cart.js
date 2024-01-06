@@ -75,4 +75,34 @@ router.put("/update/inc", verify, async (req, res, next) => {
   }
 });
 
+router.put("/update/dec", verify, async (req, res, next) => {
+  const { watchId } = req.body;
+  try {
+    const order = await prisma.order.findFirst({
+      where: {
+        user_id: req.user.id,
+        completed: false,
+      },
+    });
+    const update = await prisma.cart.findFirst({
+      where: {
+        order_id: order.id,
+        watch_id: watchId,
+      },
+    });
+
+    const updatedItem = await prisma.cart.update({
+      where: {
+        id: update.id,
+      },
+      data: {
+        quantity: update.quantity - 1,
+      },
+    });
+    res.status(200).send(updatedItem);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 module.exports = router;
