@@ -108,29 +108,52 @@ input {
 
 /*This is the styling for my nav bar. I made a simple nav bar
 you can edit or delete it later i jus made this so i can 
-see the changes when i click page to page. JP*/
-.navbar {
-  background-color: black;
-  padding: 10px 0;
-}
 
-.navbar-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-.navbar-link {
-  display: block;
-  color: white;
+see the changes when i click page to page. JP*/  
+    .navbar {
+        background-color: black;
+        padding: 10px 0;
+      }
+      
+      .navbar-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between; 
+      }
+      .navbarLeft, .navbarRight {
+        display: flex;
+      }
+      .navbar-link {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      .navbar-link:hover {
+        background-color: #333; 
+      }
+      /*Home page message*/
+      .homeText {
+        background-color: black; 
+  color: white; 
+  font-family:  Helvetica, sans-serif;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px; 
+  width: 100%;
+  padding: 20px; 
+  box-sizing: border-box; 
 
-.navbar-link:hover {
-  background-color: #333;
-}
+      }
+     
+
+
