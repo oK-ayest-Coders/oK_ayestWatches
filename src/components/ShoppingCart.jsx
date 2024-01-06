@@ -3,12 +3,15 @@
 just made it so i can have changes when i clicked around.JP*/
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
+
 function Checkout() {
   const [order, setOrder] = useState([]);
   const taxRate = 0.08;
   console.log("order", order);
   const navigate = useNavigate();
+  
   useEffect(() => {
     async function getOrder() {
       try {
@@ -30,6 +33,9 @@ function Checkout() {
     console.log(order); // Add this line to log the order
     getOrder();
   }, []);
+  
+  
+  
   const completeOrder = async () => {
     try {
       await axios.post("/api/cart/clear-cart");
@@ -41,7 +47,9 @@ function Checkout() {
     }
     navigate("/completedOrder");
   };
-  const handleIncrement = async (watchId) => {
+  
+
+  async function handleIncrement(watchId) {
     try {
       const updated = await axios.put(
         "/api/cart/update/inc",
@@ -126,7 +134,12 @@ function Checkout() {
           </div>
         </div>
       </div>
+
     </div>
+    </div>
+    </div>
+
+    
   );
 }
 export default Checkout;

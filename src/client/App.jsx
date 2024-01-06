@@ -9,6 +9,8 @@ import Home from "../components/Home";
 import AllWatches from '../components/AllWatches';
 import SingleWatch from '../components/SingleWatch';
 import Cart from "../components/ShoppingCart";
+import Complete from "../components/completedOrder";
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
           <Route path="/watches" element={<AllWatches />} />
           <Route path="/watches/:id" element={<SingleWatch />} />
           <Route path="/ShoppingCart" element={<Cart />} />
+          <Route path="/completedOrder" element={<Complete />} />
 
         </Routes>
       </div>

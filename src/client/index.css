@@ -57,6 +57,7 @@ a background image.JP*/
   align-items: center;
 }
 
+
 input {
   width: 100%;
   background: transparent;
@@ -94,7 +95,12 @@ input {
 }
 .checkout-items {
   width: 50%;
-}
+}   
+.checkout-total {
+  width: 50%;
+    }
+  
+
 
 .checkout-total {
   width: 50%;

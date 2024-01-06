@@ -1,3 +1,4 @@
+const { urlencoded } = require("body-parser");
 const prisma = require("./src/server/client");
 const bcrypt = require("bcrypt");
 
@@ -29,7 +30,7 @@ async function seed() {
 ;
   const yatch_master = await prisma.watches.create({
     data: {
-    image: "put link here",
+    image:"put picture here",
     name: "Yatch-Master",
     brand: "rolex",
     type: "analog",
