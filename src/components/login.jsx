@@ -26,7 +26,7 @@ function Login() {
             if (response.ok) {
                 console.log('Login successful:', data);
                 window.localStorage.setItem("TOKEN", data.token)
-                navigate('/');
+                navigate('/Watches');
 
             } else {
                 console.error('Login failed:', data.message);

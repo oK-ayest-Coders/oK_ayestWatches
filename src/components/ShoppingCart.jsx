@@ -30,7 +30,7 @@ function Checkout() {
         console.error(error);
       }
     }
-    console.log(order); // Add this line to log the order
+    console.log(order); 
     getOrder();
   }, []);
   
@@ -38,15 +38,28 @@ function Checkout() {
   
   const completeOrder = async () => {
     try {
-      await axios.post("/api/cart/clear-cart");
-      setCompleted(true);
-      // if i can get the order to complete then switch to this
-      //navigate('/completedOrder');
+      const token = window.localStorage.getItem("TOKEN");
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+  
+      const response = await axios.delete("/api/cart/clear-cart", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      // Update state or perform any other actions needed after clearing the cart
+      console.log("Cart cleared:", response.data);
+      navigate("/completedcart");
     } catch (error) {
-      console.error(error);
+      console.error("Error in completing the order:", error);
     }
-    navigate("/completedOrder");
   };
+  
+
+
   
 
   async function handleIncrement(watchId) {

@@ -35,13 +35,29 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-    try{
-        const orders = await prisma.order.findMany();
-        res.status(200).send(orders)
-    } catch(error){
-        console.error(error)
-
-    }
+    console.log(req.user);
+  try {
+    // Find the Order to add to
+    const order = await prisma.order.findFirst({
+      where: {
+        user_id: req.user.id,
+        completed: false,
+      },
+    });
+    const cart = await prisma.cart.create({
+        data: {
+          order_id: order.id,
+          watch_id: req.body.watch_id,
+          price: req.body.price,
+          quantity: req.body.quantity,
+          name: req.body.name,
+          userId: req.user.id,
+        },
+      });
+    res.status(200).send(cart);
+} catch (error) {
+  console.error(error);
+}
 });
 
 module.exports = router;
