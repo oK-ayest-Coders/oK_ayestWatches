@@ -22,7 +22,7 @@ const AllWatches = () => {
     const addToCart = async (watchId) => {
         try {
             // Assuming you have an endpoint '/api/cart/add' and you're sending the watch ID
-            const response = await axios.post('/api/cart/post', { watchId });
+            const response = await axios.post('/api/cart', { watchId });
             console.log(response.data); // Or handle the response appropriately
         } catch (error) {
             console.error('Error adding to cart:', error);
@@ -33,13 +33,12 @@ const AllWatches = () => {
         <div>
             <h1>All Watches</h1>
             {watches.length > 0 && watches.map(watch => (
-                <div key={watch.id}>
+                <div key={watch.id} className="allWatches">
                     <Link to={`/watches/${watch.id}`}>
-                    <h2>{watch.brand}</h2>
+                    <h2>{watch.image}</h2>
                     <h2>{watch.name}</h2>
-                    <h2>{watch.price}</h2>
                     </Link>
-<button onClick={() => addToCart(watch.id)}>Add To Cart</button>
+<button onClick={() => addToCart(watch.id)} className="allWatchesButton">Add To Cart</button>
                 </div>
             ))}
             </div>
