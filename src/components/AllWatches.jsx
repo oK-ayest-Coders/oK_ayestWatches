@@ -50,8 +50,7 @@ const AllWatches = () => {
                 return (
                     <div key={watch.id}>
                         <Link to={`/watches/${watch.id}`}>
-                            <img src={imageloop} alt={`${watch.name}`} />
-                            <h2>{watch.brand}</h2>
+                        <img src={imageloop} alt={`${watch.name}`} style={{ width: '30px', height: '30px' }} />                            <h2>{watch.brand}</h2>
                             <h2>{watch.name}</h2>
                             <h2>{watch.price}</h2>
                         </Link>
