@@ -134,5 +134,21 @@ see the changes when i click page to page. JP*/
       .navbar-link:hover {
         background-color: #333; 
       }
-      
-      
+      /*Home page message*/
+      .homeText {
+        background-color: black; 
+  color: white; 
+  font-family:  Helvetica, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px; 
+  width: 100%;
+  padding: 20px; 
+  box-sizing: border-box; 
+
+      }
+     

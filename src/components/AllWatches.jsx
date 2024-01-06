@@ -1,6 +1,10 @@
 import React,{ useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import image1 from '../img/1.jpg';
+import image2 from '../img/2.jpg';
+import image3 from '../img/3.jpg';
+
 
 const AllWatches = () => {
     const [watches, setWatches] = useState([])
@@ -31,19 +35,32 @@ const AllWatches = () => {
 
     return (
         <div>
-            <h1>All Watches</h1>
-            {watches.length > 0 && watches.map(watch => (
-                <div key={watch.id}>
-                    <Link to={`/watches/${watch.id}`}>
-                    <h2>{watch.brand}</h2>
-                    <h2>{watch.name}</h2>
-                    <h2>{watch.price}</h2>
-                    </Link>
-<button onClick={() => addToCart(watch.id)}>Add To Cart</button>
-                </div>
-            ))}
-            </div>
-    )
+        <h1>All Watches</h1>
+        {watches.length > 0 && watches.map((watch, index) => {
+
+            let imageloop;
+            if (index === 0) {
+                imageloop = image1; 
+            } else if (index === 1) {
+                imageloop = image3; 
+            } else {
+                imageloop = image2; 
+            }
+
+                return (
+                    <div key={watch.id}>
+                        <Link to={`/watches/${watch.id}`}>
+                            <img src={imageloop} alt={`${watch.name}`} />
+                            <h2>{watch.brand}</h2>
+                            <h2>{watch.name}</h2>
+                            <h2>{watch.price}</h2>
+                        </Link>
+                        <button onClick={() => addToCart(watch.id)}>Add To Cart</button>
+                    </div>
+                );
+            })}
+        </div>
+    );
 }
 
 export default AllWatches;
