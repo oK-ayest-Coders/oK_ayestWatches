@@ -55,6 +55,119 @@ async function seed() {
     }
   });
 
+  const skyDweller  = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "skyDweller",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2014",
+    size: "m",
+    in_stock: true,
+    description: "Living in the sky",
+    price: 45_000 
+    }
+  });
+
+  const airKing = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "airKing",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2018",
+    size: "m",
+    in_stock: true,
+    description: "The supreme flyer",
+    price: 25_000 
+    }
+  });
+
+  const seaDweller = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "seaDweller",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2015",
+    size: "m",
+    in_stock: true,
+    description: "Monsters in the deep",
+    price: 35_000 
+    }
+  });
+
+  const dayDate = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "dayDate",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2015",
+    size: "m",
+    in_stock: true,
+    description: "Walk in the park",
+    price: 55_000 
+    }
+  });
+
+  const explorer40 = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "explorer40",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2015",
+    size: "m",
+    in_stock: true,
+    description: "Views from above",
+    price: 35_000 
+    }
+  });
+
+  const dateJust = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "dateJust",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2015",
+    size: "m",
+    in_stock: true,
+    description: "A new day",
+    price: 29_000 
+    }
+  });
+
+  const gmtMaster = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "gmtMaster",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2015",
+    size: "m",
+    in_stock: true,
+    description: "The best of the best",
+    price: 75_000 
+    }
+  });
+
+  const deepSea = await prisma.watches.create({
+    data: {
+    image: "put link here",
+    name: "deepSea",
+    brand: "rolex",
+    type: "analog",
+    craftdate: "2015",
+    size: "m",
+    in_stock: true,
+    description: "Pirates are real",
+    price: 45_000 
+    }
+  });
+  
+
   const order = await prisma.order.create({
     data: {
     user_id: bob.id,
@@ -67,7 +180,8 @@ async function seed() {
     order_id: bob.id,
     watch_id: yatch_master.id,
     price: 50_000,
-    quantity: 1
+    quantity: 1,
+    name: yatch_master.name
     }
   });
 }
