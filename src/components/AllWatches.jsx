@@ -1,9 +1,9 @@
 import React,{ useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import image1 from '../img/1.jpg';
-import image2 from '../img/2.jpg';
-import image3 from '../img/3.jpg';
+import image1 from '../img/login.jpg';
+import image2 from '../img/login.jpg';
+import image3 from '../img/signup.jpg';
 
 
 const AllWatches = () => {

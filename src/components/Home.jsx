@@ -16,8 +16,10 @@ function Home() {
 
   return (
     <div className="homeText" onClick={handleClick}>
+            <p>Welcome to </p>
+
       <h1>OK'AYEST WATCHES</h1>
-      <p>UNDER CONSTRUCTION</p>
+      <p>Where luxury and affordability meets</p>
     </div>
   );
 }
