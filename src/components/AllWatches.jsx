@@ -18,6 +18,17 @@ const AllWatches = () => {
         }
         getWatches()
     }, [])
+
+    const addToCart = async (watchId) => {
+        try {
+            // Assuming you have an endpoint '/api/cart/add' and you're sending the watch ID
+            const response = await axios.post('/api/cart/post', { watchId });
+            console.log(response.data); // Or handle the response appropriately
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+        }
+    };
+
     return (
         <div>
             <h1>All Watches</h1>
@@ -28,7 +39,7 @@ const AllWatches = () => {
                     <h2>{watch.name}</h2>
                     <h2>{watch.price}</h2>
                     </Link>
-                    <button>Add To Cart</button>
+<button onClick={() => addToCart(watch.id)}>Add To Cart</button>
                 </div>
             ))}
             </div>
