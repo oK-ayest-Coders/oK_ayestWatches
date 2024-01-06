@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import image1 from '../img/login.jpg';
@@ -13,8 +13,8 @@ const AllWatches = () => {
     useEffect(() => {
         async function getWatches() {
             try {
-                const {data:watches} = await axios.get("/api/watches");
-                console.log (watches)
+                const { data: watches } = await axios.get("/api/watches");
+                console.log(watches)
                 setWatches(watches)
             } catch (error) {
                 console.error(error)
@@ -23,38 +23,58 @@ const AllWatches = () => {
         getWatches()
     }, [])
 
-    const addToCart = async (watchId) => {
-        try {
-            // Assuming you have an endpoint '/api/cart/add' and you're sending the watch ID
-            const response = await axios.post('/api/cart', { watchId });
-            console.log(response.data); // Or handle the response appropriately
-        } catch (error) {
-            console.error('Error adding to cart:', error);
+   const addToCart = async (watch) => {
+    try {
+        const token = window.localStorage.getItem('TOKEN');
+        
+        if (!token) {
+            console.error('Authentication token not found');
+            return;
         }
-    };
+
+        const { id: watchId, price, name } = watch;
+        const quantity = 1; 
+
+        const response = await axios.post('/api/cart', {
+            watch_id: watchId,
+            price,
+            quantity,
+            name
+        }, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error adding to cart:', error);
+    }
+};
+
 
     return (
         <div>
-        <h1>All Watches</h1>
-        {watches.length > 0 && watches.map((watch, index) => {
+            <h1>All Watches</h1>
+            {watches.length > 0 && watches.map((watch, index) => {
 
-            let imageloop;
-            if (index === 0) {
-                imageloop = image1; 
-            } else if (index === 1) {
-                imageloop = image3; 
-            } else {
-                imageloop = image2; 
-            }
+                let imageloop;
+                if (index === 0) {
+                    imageloop = image1;
+                } else if (index === 1) {
+                    imageloop = image3;
+                } else {
+                    imageloop = image2;
+                }
 
                 return (
                     <div key={watch.id}>
                         <Link to={`/watches/${watch.id}`}>
-                        <img src={imageloop} alt={`${watch.name}`} style={{ width: '30px', height: '30px' }} />                            <h2>{watch.brand}</h2>
+                            <img src={imageloop} alt={`${watch.name}`} style={{ width: '300px', height: '300px' }} />                           
+                             <h2>{watch.brand}</h2>
                             <h2>{watch.name}</h2>
                             <h2>{watch.price}</h2>
                         </Link>
-                        <button onClick={() => addToCart(watch.id)}>Add To Cart</button>
+                        <button onClick={() => addToCart(watch)}>Add To Cart</button>
                     </div>
                 );
             })}

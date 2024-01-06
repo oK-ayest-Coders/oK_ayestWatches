@@ -30,6 +30,7 @@ router.post("/", verify, async (req, res, next) => {
     console.error(error);
   }
 });
+
 // DELETE /api/cart/:id
 router.delete("/:id", async (req, res, next) => {
   const { id } = req.params;
@@ -104,5 +105,37 @@ router.put("/update/dec", verify, async (req, res, next) => {
     console.error(error);
   }
 });
+
+router.delete("/clear-cart", verify, async (req, res) => {
+  try {
+    // Assuming `verify` middleware sets `req.user`
+    const userId = req.user.id;
+
+    // Find the active order for the user
+    const order = await prisma.order.findFirst({
+      where: {
+        user_id: userId,
+        completed: false,
+      },
+    });
+
+    if (!order) {
+      return res.status(404).send({ message: "Active order not found." });
+    }
+
+    // Delete all cart items linked to the order
+    await prisma.cart.deleteMany({
+      where: {
+        order_id: order.id,
+      },
+    });
+
+    res.status(200).send({ message: "Cart cleared successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Error clearing the cart." });
+  }
+});
+
 
 module.exports = router;
