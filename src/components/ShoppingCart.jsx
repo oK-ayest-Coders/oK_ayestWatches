@@ -6,14 +6,14 @@ import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
-function Checkout() {
+const Checkout = () => {
   const [order, setOrder] = useState([]);
   const taxRate = 0.08;
   console.log("order", order);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getOrder() {
+    const getOrder = async () => {
       try {
         const token = window.localStorage.getItem("TOKEN");
         if (!token) {
@@ -30,29 +30,12 @@ function Checkout() {
         console.error(error);
       }
     }
-    console.log(order);
+    console.log(order); 
     getOrder();
   }, []);
-
-
-  const calculateSubtotal = () => {
-    if (order.Cart) {
-      let subtotal = 0;
-      for (const item of order.Cart) {
-        subtotal += item.price * item.quantity;
-      }
-      return subtotal;
-    } else {
-      return 0;
-    }
-  };
-  const calculateTax = () => {
-    return calculateSubtotal() * taxRate;
-  };
-  const calculateTotal = () => {
-    return calculateSubtotal() + calculateTax();
-  };
-
+  
+  
+  
   const completeOrder = async () => {
     try {
 
@@ -61,22 +44,25 @@ function Checkout() {
         console.error("No token found");
         return;
       }
-
-      await axios.delete("/api/cart/clearCart", {
+  
+      const response = await axios.delete("/api/cart/clear-cart", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
-      navigate("/completedOrder");
+  
+      // Update state or perform any other actions needed after clearing the cart
+      console.log("Cart cleared:", response.data);
+      navigate("/completedcart");
     } catch (error) {
       console.error("Error in completing the order:", error);
     }
 
   };
+  
 
 
-
-
+  
 
   async function handleIncrement(watchId) {
     try {
@@ -176,9 +162,8 @@ function Checkout() {
           )}
         </div>
       </div>
-    </div>
+
     </div>
   );
 }
-
 export default Checkout;
