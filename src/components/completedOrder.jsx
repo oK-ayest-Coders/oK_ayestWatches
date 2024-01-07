@@ -8,7 +8,6 @@ function Complete() {
     navigate('/watches'); 
   };
   const handleLogout = () => {
-//create a log out function
     navigate('/login'); 
   };
   return (
