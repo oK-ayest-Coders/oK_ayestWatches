@@ -29,40 +29,32 @@ const Checkout = () => {
       } catch (error) {
         console.error(error);
       }
-    }
-    console.log(order); 
+    };
+    console.log(order);
     getOrder();
   }, []);
-  
-  
-  
+
   const completeOrder = async () => {
     try {
-
       const token = window.localStorage.getItem("TOKEN");
       if (!token) {
         console.error("No token found");
         return;
       }
-  
+
       const response = await axios.delete("/api/cart/clear-cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       // Update state or perform any other actions needed after clearing the cart
       console.log("Cart cleared:", response.data);
       navigate("/completedcart");
     } catch (error) {
       console.error("Error in completing the order:", error);
     }
-
   };
-  
-
-
-  
 
   async function handleIncrement(watchId) {
     try {
@@ -87,7 +79,7 @@ const Checkout = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
   const handleDecrement = async (watchId, quantity) => {
     if (quantity <= 1) {
@@ -116,11 +108,10 @@ const Checkout = () => {
       console.error(error);
     }
   };
-  return (
-    <div>
-      <h1>Checkout</h1>
-      <div className="checkout-content">
-
+  return;
+  <>
+    <h1>Checkout</h1>
+    <div className="checkout-content">
       <div className="checkout-content1">
         {order.Cart && order.Cart.length > 0 ? (
           order.Cart.map((item, index) => (
@@ -149,8 +140,8 @@ const Checkout = () => {
         ) : (
           <p>Cart is empty</p>
         )}
-        </div>
-        <div className="checkout-content2">
+      </div>
+      <div className="checkout-content2">
         <div className="priceDisplay">
           {calculateSubtotal() > 0 && (
             <>
@@ -162,8 +153,7 @@ const Checkout = () => {
           )}
         </div>
       </div>
-
     </div>
-  );
-}
+  </>;
+};
 export default Checkout;
