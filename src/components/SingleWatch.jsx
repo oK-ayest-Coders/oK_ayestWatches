@@ -19,20 +19,10 @@ const SingleWatch = () => {
         }
         getWatch()
     },[])
-    
-    // const goBackToAll = async (watchId) => {
-    //     try {
-    //         // Assuming you have an endpoint '/api/allWatches' and you're sending the watch ID
-    //         const response = await axios.post('/api/cart', { watchId });
-    //         console.log(response.data); // Or handle the response appropriately
-    //     } catch (error) {
-    //         console.error('Error adding to cart:', error);
-    //     }
-    // };
 
     return(
-        <div className="singleWatches"><h1>Single Watch</h1>
-        <h3>{watch.image}</h3>
+        <div className="singleWatches">
+        <h3 style={{ width: '160px', height: '160px', border: 'solid black 5px'}}>{watch.image}</h3>
         <h3>{watch.name}</h3>
         <h3>{watch.price}</h3>
         <h3>{watch.description}</h3>
@@ -42,4 +32,4 @@ const SingleWatch = () => {
 
 }
 
-export default SingleWatch
+export default SingleWatch;
