@@ -91,20 +91,58 @@ input {
 
 .checkout-content {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+
+  ;
+}
+.checkout-content1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-basis: 50%; 
+}
+
+.checkout-content2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-basis: 50%;
+  position: sticky; 
+  top: 0;
+}
+.itemsDisplay {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+
 }
-.checkout-items {
-  width: 50%;
-}   
-.checkout-total {
-  width: 50%;
-    }
+
+.priceDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-width: 400px;
+  margin-top: 2rem;
+  background-color: #ecebeb;
+  padding: 1.5rem;
+  border-radius: 15px;
+
+}
+
   
-
-
-.checkout-total {
-  width: 50%;
-}
 
 /*This is the styling for my nav bar. I made a simple nav bar
 you can edit or delete it later i jus made this so i can 

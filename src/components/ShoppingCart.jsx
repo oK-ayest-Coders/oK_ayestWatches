@@ -11,7 +11,7 @@ function Checkout() {
   const taxRate = 0.08;
   console.log("order", order);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     async function getOrder() {
       try {
@@ -30,37 +30,53 @@ function Checkout() {
         console.error(error);
       }
     }
-    console.log(order); 
+    console.log(order);
     getOrder();
   }, []);
-  
-  
-  
+
+
+  const calculateSubtotal = () => {
+    if (order.Cart) {
+      let subtotal = 0;
+      for (const item of order.Cart) {
+        subtotal += item.price * item.quantity;
+      }
+      return subtotal;
+    } else {
+      return 0;
+    }
+  };
+  const calculateTax = () => {
+    return calculateSubtotal() * taxRate;
+  };
+  const calculateTotal = () => {
+    return calculateSubtotal() + calculateTax();
+  };
+
   const completeOrder = async () => {
     try {
+
       const token = window.localStorage.getItem("TOKEN");
       if (!token) {
         console.error("No token found");
         return;
       }
-  
-      const response = await axios.delete("/api/cart/clear-cart", {
+
+      await axios.delete("/api/cart/clearCart", {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-  
-      // Update state or perform any other actions needed after clearing the cart
-      console.log("Cart cleared:", response.data);
-      navigate("/completedcart");
+      navigate("/completedOrder");
     } catch (error) {
       console.error("Error in completing the order:", error);
     }
+
   };
-  
 
 
-  
+
+
 
   async function handleIncrement(watchId) {
     try {
@@ -115,16 +131,20 @@ function Checkout() {
     }
   };
   return (
-    <div className="loginContainer">
-      <div className="form-box">
-        <h1>Checkout</h1>
-        <div className="checkout-content">
-          {order.Cart &&
-            order.Cart.map((item, index) => (
-              <div key={item.id}>
+    <div>
+      <h1>Checkout</h1>
+      <div className="checkout-content">
+
+      <div className="checkout-content1">
+        {order.Cart && order.Cart.length > 0 ? (
+          order.Cart.map((item, index) => (
+            <div className="itemsDisplay" key={item.id}>
+              <div className="item-info">
                 <h2>{item.name}</h2>
                 <p>Price: ${item.price.toFixed(2)}</p>
                 <p>Quantity: {item.quantity}</p>
+              </div>
+              <div className="item-buttons">
                 <button
                   onClick={() => handleIncrement(item.watch_id)}
                   style={{ background: "blue", padding: "5px 10px" }}
@@ -138,20 +158,27 @@ function Checkout() {
                   -
                 </button>
               </div>
-            ))}
-          <div>
-            {/* <p>Subtotal: ${subtotal.toFixed(2)}</p>
-        <p>Tax: ${tax.toFixed(2)}</p>
-        <p>Total: ${total.toFixed(2)}</p> */}
-            <button onClick={completeOrder}>Complete Order</button>
-          </div>
+            </div>
+          ))
+        ) : (
+          <p>Cart is empty</p>
+        )}
+        </div>
+        <div className="checkout-content2">
+        <div className="priceDisplay">
+          {calculateSubtotal() > 0 && (
+            <>
+              <p>Subtotal: ${calculateSubtotal().toFixed(2)}</p>
+              <p>Tax: ${calculateTax().toFixed(2)}</p>
+              <p>Total: ${calculateTotal().toFixed(2)}</p>
+              <button onClick={completeOrder}>Complete Order</button>
+            </>
+          )}
         </div>
       </div>
-
     </div>
-    
-
-    
+    </div>
   );
 }
+
 export default Checkout;
