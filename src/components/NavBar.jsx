@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import logo from '../img/logo.png'; 
 
 function Navbar() {
   return (
@@ -11,6 +12,11 @@ function Navbar() {
           <li><Link to="/login" className="navbar-link">Login</Link></li>
           <li><Link to="/signUp" className="navbar-link">Sign up</Link></li>
         </div>
+{/* 
+        <div className="navbarLogo">
+          <img src={logo} alt="Logo" />
+        </div>
+         */}
         <div className="navbarRight">
           <li><Link to="/ShoppingCart" className="navbar-link">Cart</Link></li>
         </div>
